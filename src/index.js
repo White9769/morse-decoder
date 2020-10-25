@@ -38,9 +38,72 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+function decodeMorse(morseCode) {
+  var ref = { 
+    '.-':     'a',
+    '-...':   'b',
+    '-.-.':   'c',
+    '-..':    'd',
+    '.':      'e',
+    '..-.':   'f',
+    '--.':    'g',
+    '....':   'h',
+    '..':     'i',
+    '.---':   'j',
+    '-.-':    'k',
+    '.-..':   'l',
+    '--':     'm',
+    '-.':     'n',
+    '---':    'o',
+    '.--.':   'p',
+    '--.-':   'q',
+    '.-.':    'r',
+    '...':    's',
+    '-':      't',
+    '..-':    'u',
+    '...-':   'v',
+    '.--':    'w',
+    '-..-':   'x',
+    '-.--':   'y',
+    '--..':   'z',
+    '.----':  '1',
+    '..---':  '2',
+    '...--':  '3',
+    '....-':  '4',
+    '.....':  '5',
+    '-....':  '6',
+    '--...':  '7',
+    '---..':  '8',
+    '----.':  '9',
+    '-----':  '0',
+  };
+
+  return morseCode
+    .split('   ')
+    .map(
+      a => a
+        .split(' ')
+        .map(
+          b => ref[b]
+        ).join('')
+    ).join(' ');
+}
+let stroke="";
+let arr=expr;
+for (let i=0;i<arr.length;i=i+2){
+    if ((i%10)==0){
+        stroke+=" ";
+    }
+    if ((parseInt(arr[i].toString()+arr[i+1].toString()))==11){
+        stroke+='-';
+    }else if((parseInt(arr[i]+arr[i+1]))==10){
+        stroke+='.';
+    }
+}
+return decodeMorse(stroke);
 }
 
 module.exports = {
     decode
 }
+
